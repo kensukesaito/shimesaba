@@ -1,0 +1,34 @@
+{
+  "name": "shimesaba",
+  "type": "module",
+  "private": true,
+  "author": "Kensuke Saito",
+  "license": "UNLICENSED",
+  "scripts": {
+    "dev": "node --enable-source-maps --loader ts-node/esm --import=ts-node/register --require=tsconfig-paths/register --watch --watch-path=./src ./src/index.ts",
+    "build": "tsc",
+    "start": "node ./dist/index.js",
+    "graphql:generate": "NODE_OPTIONS='--loader ts-node/esm' graphql-codegen-esm",
+    "postinstall": "patch-package --patch-dir patch"
+  },
+  "dependencies": {
+    "@graphql-tools/schema": "^10.0.0",
+    "graphql": "^16.8.1",
+    "graphql-scalars": "^1.22.2",
+    "graphql-yoga": "^4.0.5"
+  },
+  "devDependencies": {
+    "@graphql-codegen/add": "^5.0.0",
+    "@graphql-codegen/cli": "^5.0.0",
+    "@graphql-codegen/plugin-helpers": "^5.0.1",
+    "@graphql-codegen/schema-ast": "^4.0.0",
+    "@graphql-codegen/typescript": "^4.0.1",
+    "@graphql-codegen/typescript-resolvers": "^4.0.1",
+    "@types/node": "^20.8.2",
+    "graphql-config": "^5.0.2",
+    "ts-node": "^10.9.1",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "5.2.2",
+    "patch-package": "^8.0.0"
+  }
+}

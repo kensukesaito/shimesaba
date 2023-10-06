@@ -1,0 +1,22 @@
+diff --git a/node_modules/@graphql-codegen/cli/esm/codegen.js b/node_modules/@graphql-codegen/cli/esm/codegen.js
+index de4ba1b..5bf99ac 100644
+--- a/node_modules/@graphql-codegen/cli/esm/codegen.js
++++ b/node_modules/@graphql-codegen/cli/esm/codegen.js
+@@ -22,16 +22,7 @@ const makeDefaultLoader = (from) => {
+         from = path.join(from, '__fake.js');
+     }
+     const relativeRequire = createRequire(from);
+-    return async (mod) => {
+-        return import(isESMModule
+-            ? /**
+-               * For ESM we currently have no "resolve path" solution
+-               * as import.meta is unavailable in a CommonJS context
+-               * and furthermore unavailable in stable Node.js.
+-               **/
+-                mod
+-            : relativeRequire.resolve(mod));
+-    };
++    return async (mod) => import(relativeRequire.resolve(mod));
+ };
+ function createCache() {
+     const cache = new Map();

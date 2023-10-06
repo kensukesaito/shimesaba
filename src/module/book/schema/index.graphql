@@ -1,0 +1,84 @@
+
+extend type Query {
+  book(
+    id: ID!
+  ): Book
+  books(
+    first: Int
+    after: String
+    last: Int
+    before: String
+  ): BookConnection!
+}
+
+extend type Mutation {
+  createBook(input: CreateBookInput!): CreateBookPayload
+  updateBook(input: UpdateBookInput!): UpdateBookPayload
+  deleteBook(input: DeleteBookInput!): DeleteBookPayload
+}
+
+type Book implements Node {
+  id: ID!
+  title: String
+  author: String
+  country: CountryCode
+  isbn: ISBN
+  url: URL
+  emailAddress: EmailAddress
+  phoneNumber: PhoneNumber
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type BookConnection {
+  edges: [BookEdge!]!
+  pageInfo: PageInfo!
+}
+
+type BookEdge {
+  cursor: String!
+  node: Book!
+}
+
+input CreateBookInput {
+  clientMutationId: String
+  title: String!
+  author: String!
+  country: CountryCode!
+  isbn: ISBN!
+  url: URL
+  emailAddress: EmailAddress
+  phoneNumber: PhoneNumber
+}
+
+type CreateBookPayload {
+  clientMutationId: String
+  book: Book
+}
+
+input UpdateBookInput {
+  clientMutationId: String
+  id: ID!
+  title: String!
+  author: String!
+  country: CountryCode!
+  isbn: ISBN!
+  url: URL
+  emailAddress: EmailAddress
+  phoneNumber: PhoneNumber
+}
+
+type UpdateBookPayload {
+  clientMutationId: String
+  book: Book
+}
+
+input DeleteBookInput {
+  clientMutationId: String
+  id: ID!
+}
+
+type DeleteBookPayload {
+  clientMutationId: String
+  book: Book
+}
